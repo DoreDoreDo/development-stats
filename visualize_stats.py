@@ -77,7 +77,36 @@ def plot_category_area(df, value_col, palette):
         sub = df[df['category'] == cat]
         color = palette.get(cat, 'rgba(200,200,200,0.5)')
         fig.add_trace(go.Scatter(x=sub['date'], y=sub[value_col], name=cat, fill='tozeroy', mode='none', fillcolor=color, line=dict(color=color)))
-    fig.update_layout(title=None, xaxis_title=None, yaxis_title=None)
+        fig.update_layout(
+            title=None,
+            xaxis_title=None,
+            yaxis_title=None,
+            margin=dict(t=10),
+            paper_bgcolor='rgba(255,255,255,0)',
+            plot_bgcolor='rgba(250,250,250,1)',
+            xaxis=dict(
+                showline=True,
+                showgrid=False,
+                zeroline=False,
+                showticklabels=True,
+                ticks='',
+                linecolor='rgba(180,180,180,1)',
+                linewidth=2,
+                ticklabelposition='outside',
+                ticklabelstandoff=10
+            ),
+            yaxis=dict(
+                showline=False,
+                showgrid=False,
+                zeroline=False,
+                showticklabels=True,
+                ticks='',
+                linecolor='rgba(180,180,180,1)',
+                linewidth=2,
+                ticklabelposition='outside',
+                ticklabelstandoff=10
+            )
+        )
     return fig
     # ...existing code...
 
