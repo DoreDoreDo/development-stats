@@ -9,6 +9,8 @@ __pycache__/
 dist/
 build/
 
+.specstory/
+
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
