@@ -120,6 +120,12 @@ def main():
     with open(os.path.join('gh_pages', 'template.html'), 'r') as tpl_file:
         template = tpl_file.read()
     cat_df = load_category_stats(category_files)
+    # Filter to previous calendar month
+    today = datetime.today()
+    first_day_this_month = today.replace(day=1)
+    last_month_end = first_day_this_month - pd.Timedelta(days=1)
+    last_month_start = last_month_end.replace(day=1)
+    cat_df = cat_df[(cat_df['date'] >= last_month_start) & (cat_df['date'] <= last_month_end)]
     palette = {'api': 'rgba(255, 228, 225, 0.5)', 'app': 'rgba(255, 250, 205, 0.5)', 'other': 'rgba(255, 182, 193, 0.5)'}
     fig = plot_category_area(cat_df, value_col='lines_changed', palette=palette)
     graph_html = fig.to_html(full_html=False, include_plotlyjs="cdn")
