@@ -3,8 +3,7 @@ name: Generate and Deploy Stats Visualization
 on:
   push:
     branches: [master]
-  schedule:
-    - cron: '0 2 * * *' # daily at 2am UTC
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:

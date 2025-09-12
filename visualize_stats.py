@@ -8,15 +8,14 @@ from typing import List, Tuple, Dict
 from tabulate import tabulate
 
 CATEGORIES_TO_VISUALIZE: List[str] = ['api', 'app', 'other']
-NUM_DAYS: int = 15  # Number of days to look back
+NUM_DAYS: int = 15  # Number of days to look back in graphic
 
-# Directory containing daily CSVs
-data_dir: str = 'daily'
+DATA_DIR: str = 'daily'
 
 # Find all stats CSVs
 def find_csvs() -> Tuple[List[str], List[str]]:
-    category_files: List[str] = sorted(glob.glob(os.path.join(data_dir, 'stats-by-category-*.csv')))
-    repo_files: List[str] = sorted(glob.glob(os.path.join(data_dir, 'stats-per-repo-*.csv')))
+    category_files: List[str] = sorted(glob.glob(os.path.join(DATA_DIR, '**', 'stats-by-category-*.csv'), recursive=True))
+    repo_files: List[str] = sorted(glob.glob(os.path.join(DATA_DIR, '**', 'stats-per-repo-*.csv'), recursive=True))
     return category_files, repo_files
 
 # Parse date from filename
@@ -110,7 +109,6 @@ def plot_category_area(df: pd.DataFrame, value_col: str, palette: Dict[str, str]
             )
         )
     return fig
-    # ...existing code...
 
 # Function to print dataframe using tabulate
 def print_data_table(df: pd.DataFrame) -> None:
