@@ -145,7 +145,13 @@ def main() -> None:
     with open(output_path, 'w') as f:
         f.write(output_html)
 
-    # print(f'{output_path} generated.')
+    # Save the figure as a PNG image
+    image_path: str = os.path.join('gh_pages', 'stats_screenshot.png')
+    try:
+        fig.write_image(image_path)
+        print(f'Screenshot saved to {image_path}')
+    except Exception as e:
+        print(f'Could not save image: {e}\nIf you see a kaleido error, run: pip install -U kaleido')
 
 if __name__ == '__main__':
     main()
