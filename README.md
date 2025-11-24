@@ -13,7 +13,7 @@ A tool to visualize daily development statistics and generate GitHub Pages conte
 Create environment and install dependencies:
 ```bash
 $(poetry env activate)
-poetry install
+poetry install --no-root
 ```
 
 Run the visualization script:

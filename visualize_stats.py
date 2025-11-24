@@ -7,7 +7,13 @@ from datetime import datetime
 from typing import List, Tuple, Dict
 from tabulate import tabulate
 
-CATEGORIES_TO_VISUALIZE: List[str] = ['api', 'app', 'other']
+CATEGORIES_TO_VISUALIZE: List[str] = ['api', 'app', 'other', 'infraestructure']
+PALETTE: Dict[str, str] = {
+    'api': 'rgba(255, 228, 225, 0.5)',
+    'app': 'rgba(255, 250, 205, 0.5)',
+    'other': 'rgba(255, 182, 193, 0.5)',
+    'infraestructure': 'rgba(173, 216, 230, 0.5)'  # light blue
+}
 NUM_DAYS: int = 15  # Number of days to look back in graphic
 
 DATA_DIR: str = 'daily'
@@ -137,8 +143,7 @@ def main() -> None:
     # Print the filtered data table
     print_data_table(cat_df)
 
-    palette: Dict[str, str] = {'api': 'rgba(255, 228, 225, 0.5)', 'app': 'rgba(255, 250, 205, 0.5)', 'other': 'rgba(255, 182, 193, 0.5)'}
-    fig: go.Figure = plot_category_area(cat_df, value_col='lines_changed', palette=palette)
+    fig: go.Figure = plot_category_area(cat_df, value_col='lines_changed', palette=PALETTE)
     graph_html: str = fig.to_html(full_html=False, include_plotlyjs="cdn")
     output_html: str = template.replace('<!--GRAPHS-->', graph_html)
     output_path: str = os.path.join('gh_pages', 'index.html')
