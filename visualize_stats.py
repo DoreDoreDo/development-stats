@@ -14,7 +14,8 @@ PALETTE: Dict[str, str] = {
     'other': 'rgba(255, 182, 193, 0.5)',
     'infraestructure': 'rgba(173, 216, 230, 0.5)'  # light blue
 }
-NUM_DAYS: int = 15  # Number of days to look back in graphic
+NUM_DAYS: int = 15          # Number of days to look back in graphic
+MAX_LINES_OF_CODE = 2500    # Top of the graph
 
 DATA_DIR: str = 'daily'
 
@@ -111,7 +112,8 @@ def plot_category_area(df: pd.DataFrame, value_col: str, palette: Dict[str, str]
                 linecolor='rgba(180,180,180,1)',
                 linewidth=2,
                 ticklabelposition='outside',
-                ticklabelstandoff=10
+                ticklabelstandoff=10,
+                range=[0, MAX_LINES_OF_CODE]
             )
         )
     return fig
