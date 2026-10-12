@@ -15,7 +15,7 @@ PALETTE: Dict[str, str] = {
     'infraestructure': 'rgba(173, 216, 230, 0.5)'  # light blue
 }
 NUM_DAYS: int = 15          # Number of days to look back in graphic
-MAX_LINES_OF_CODE = 2500    # Top of the graph
+MAX_LINES_OF_CODE = 1000    # Top of the graph
 
 DATA_DIR: str = 'daily'
 
